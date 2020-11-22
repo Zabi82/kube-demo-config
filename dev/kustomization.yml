@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kube-demo
+bases:
+  - ../base
+
+configMapGenerator:
+  - name: apps-config
+    behavior: create
+    literals:
+      - DEMO_STRING=Kube
+
+vars:
+- name: DEMO_STRING
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: apps-config
+  fieldref:
+    fieldpath: data.DEMO_STRING
+
+patchesStrategicMerge:
+  - patch.deployment.yml

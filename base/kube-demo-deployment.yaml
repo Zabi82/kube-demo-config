@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kube-demo
+  name: kube-demo-deploy
+  namespace: kube-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-demo
+  template:
+    metadata:
+      labels:
+        app: kube-demo
+    spec:
+      containers:
+        - image: zabsdockerhub/kube-demo:1.0
+          name: kube-demo
+          ports:
+            - containerPort: 9090
+              name: kube-demo
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
