@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-demo-config
+data:
+  # property-like keys; each key maps to a simple value
+  hello_message: "Kubernetes injected from configmap"

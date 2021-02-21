@@ -5,20 +5,9 @@ namespace: kube-demo
 bases:
   - ../base
 
-configMapGenerator:
-  - name: apps-config
-    behavior: create
-    literals:
-      - DEMO_STRING=Kube
-
-vars:
-- name: DEMO_STRING
-  objref:
-    apiVersion: v1
-    kind: ConfigMap
-    name: apps-config
-  fieldref:
-    fieldpath: data.DEMO_STRING
-
 patchesStrategicMerge:
   - patch.deployment.yml
+
+resources:
+  - kube-demo-ingress.yaml
+  - kube-demo-configmap.yml
