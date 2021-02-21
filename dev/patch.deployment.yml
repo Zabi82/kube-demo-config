@@ -1,9 +1,11 @@
 ---
 apiVersion: apps/v1
 kind: Deployment
-namespace: kube-demo
 metadata:
+  labels:
+    app: kube-demo
   name: kube-demo-deploy
+  namespace: kube-demo
 spec:
   replicas: 2
 
